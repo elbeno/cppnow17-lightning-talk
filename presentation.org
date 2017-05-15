@@ -1,0 +1,164 @@
+#    -*- mode: org -*-
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:nil reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1600 reveal_height:900
+#+OPTIONS: toc:nil <:nil timestamp:nil email:t reveal_slide_number:"c/t"
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: none
+#+REVEAL_THEME: blood
+#+REVEAL_HLEVEL: 1
+#+REVEAL_EXTRA_CSS: ./presentation.css
+#+REVEAL_ROOT: ../reveal.js/
+
+# (setq org-reveal-title-slide "<h1>%t</h1><br/><h2>%a</h2><h3>%e / <a href=\"http://twitter.com/ben_deane\">@ben_deane</a></h3><h2>%d</h2>")
+
+#+TITLE: A Lightning Talk
+#+AUTHOR: Ben Deane
+#+EMAIL: bdeane@blizzard.com
+#+DATE: May 16th, 2017
+
+#+REVEAL_HTML: <script type="text/javascript" src="./presentation.js"></script>
+
+* The Challenge
+
+[[./keywords-challenge.png]]
+
+* Hmm
+#+ATTR_HTML: :width 40% :height 40%
+[[./hmm.png]]
+
+(https://xkcd.com/356/)
+
+* To [[http://en.cppreference.com/w/cpp/keyword][cppreference.com]]!
+
+[[./cppref-keywords.png]]
+
+* Start slow
+
+#+BEGIN_SRC c++
+unsigned long long int x = 42;
+#+END_SRC
+
+Happily, ~unsigned~, ~long~ and ~int~ are keywords
+
+* 6 is easy
+
+#+BEGIN_SRC c++
+const volatile
+    unsigned long long int x = 42;
+#+END_SRC
+
+CV-qualify it for an easy extra 2
+
+* Add more qualifiers! (7)
+
+#+BEGIN_SRC c++
+static const volatile
+   unsigned long long int x = 42;
+#+END_SRC
+
+Hmm, still C++98...
+
+* Add more qualifiers! (9)
+
+#+BEGIN_SRC c++
+static thread_local constexpr const volatile
+    unsigned long long int x = 42;
+#+END_SRC
+
+Now C++11!
+
+* More qualifiers! (10)
+
+#+BEGIN_SRC c++
+static thread_local constexpr inline const volatile
+    unsigned long long int x = 42;
+#+END_SRC
+
+C++17 (or we could make it a function)
+
+* What now?
+
+#+BEGIN_SRC c++
+static thread_local inline constexpr const volatile
+    unsigned long long int * const volatile x = nullptr;
+#+END_SRC
+
+Cheating. ~*~ isn't a keyword!
+
+* What now?
+
+#+BEGIN_SRC c++
+static thread_local constexpr inline const volatile
+    unsigned long long long int x = 42;
+#+END_SRC
+
+Start trying odd things...
+
+* Oops
+
+[[./longcat.jpg]]
+
+#+BEGIN_SRC bash
+error: 'long long long' is too long for GCC
+#+END_SRC
+
+* What else?
+
+#+BEGIN_SRC c++
+static static thread_local constexpr inline const volatile
+    unsigned long long int x = 42;
+#+END_SRC
+
+Surely qualifiers are idempotent, no?
+
+* Oops
+
+#+BEGIN_SRC bash
+error: conflicting specifiers in declaration of ‘x’
+#+END_SRC
+
+OK, no.
+
+* What else?
+
+ - ~explicit~?
+ - ~friend~?
+ - ~operator~?
+
+* Aha, UDLs
+
+#+BEGIN_SRC c++
+static constexpr inline const volatile
+    unsigned long long int operator "" _x(char);
+#+END_SRC
+
+But we had to lose ~thread_local~, so still only 10...
+
+* Technicalities count
+
+#+BEGIN_SRC c++
+static constexpr inline const volatile
+    unsigned long long int bitand operator "" _x(char);
+#+END_SRC
+
+11!
+
+* But then I realized
+
+The real answer:
+
+#+ATTR_REVEAL: :frag (appear)
+\aleph_0
+
+* Unlimited keywords
+
+#+BEGIN_SRC c++
+auto x = sizeof sizeof sizeof sizeof sizeof /*
+   ... sizeof sizeof sizeof ...
+   */ 0;
+#+END_SRC
+
+Technicalities count, right?

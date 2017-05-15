@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>A Lightning Talk</title>
+<meta name="author" content="(Ben Deane)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>A Lightning Talk</h1><br/><h2>Ben Deane</h2><h3><a href="mailto:bdeane@blizzard.com">bdeane@blizzard.com</a> / <a href="http://twitter.com/ben_deane">@ben_deane</a></h3><h2>May 16th, 2017</h2>
+</section>
+<script type="text/javascript" src="./presentation.js"></script>
+
+<section>
+<section id="slide-org7b36c2a">
+<h2 id="org7b36c2a">The Challenge</h2>
+
+<div class="figure">
+<p><img src="./keywords-challenge.png" alt="keywords-challenge.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org328d526">
+<h2 id="org328d526">Hmm</h2>
+
+<div class="figure">
+<p><img src="./hmm.png" alt="hmm.png" width="40%" height="40%" />
+</p>
+</div>
+
+<p>
+(<a href="https://xkcd.com/356/">https://xkcd.com/356/</a>)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org80ec359">
+<h2 id="org80ec359">To <a href="http://en.cppreference.com/w/cpp/keyword">cppreference.com</a>!</h2>
+
+<div class="figure">
+<p><img src="./cppref-keywords.png" alt="cppref-keywords.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org19d1f3b">
+<h2 id="org19d1f3b">Start slow</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+Happily, <code>unsigned</code>, <code>long</code> and <code>int</code> are keywords
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org2ee1f2b">
+<h2 id="org2ee1f2b">6 is easy</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+CV-qualify it for an easy extra 2
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org64f0fb5">
+<h2 id="org64f0fb5">Add more qualifiers! (7)</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+   <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+Hmm, still C++98&#x2026;
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org6cbb381">
+<h2 id="org6cbb381">Add more qualifiers! (9)</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">thread_local</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+Now C++11!
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org46986d5">
+<h2 id="org46986d5">More qualifiers! (10)</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">thread_local</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+C++17 (or we could make it a function)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org074b874">
+<h2 id="org074b874">What now?</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">thread_local</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> * <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">nullptr</span>;
+</pre>
+</div>
+
+<p>
+Cheating. <code>*</code> isn't a keyword!
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf4ad78a">
+<h2 id="orgf4ad78a">What now?</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">thread_local</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+Start trying odd things&#x2026;
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org4c19aae">
+<h2 id="org4c19aae">Oops</h2>
+
+<div class="figure">
+<p><img src="./longcat.jpg" alt="longcat.jpg" />
+</p>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">error: <span style="color: #b22222;">'long long long'</span> <span style="color: #008b8b;">is</span> too long for GCC
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdd559dc">
+<h2 id="orgdd559dc">What else?</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">thread_local</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = <span style="color: #008b8b;">42</span>;
+</pre>
+</div>
+
+<p>
+Surely qualifiers are idempotent, no?
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8aae2f8">
+<h2 id="org8aae2f8">Oops</h2>
+<div class="org-src-container">
+
+<pre  class="src src-bash">error: conflicting specifiers in declaration of &#8216;x&#8217;
+</pre>
+</div>
+
+<p>
+OK, no.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdd91025">
+<h2 id="orgdd91025">What else?</h2>
+<ul>
+<li><code>explicit</code>?</li>
+<li><code>friend</code>?</li>
+<li><code>operator</code>?</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org387e0b2">
+<h2 id="org387e0b2">Aha, UDLs</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a020f0;">operator</span> <span style="color: #b22222;">""</span> _x<span style="color: #707183;">(</span><span style="color: #228b22;">char</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+But we had to lose <code>thread_local</code>, so still only 10&#x2026;
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org7335ee7">
+<h2 id="org7335ee7">Technicalities count</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">constexpr</span> <span style="color: #a020f0;">inline</span> <span style="color: #a020f0;">const</span> <span style="color: #a020f0;">volatile</span>
+    <span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">int</span> <span style="color: #a020f0;">bitand</span> <span style="color: #a020f0;">operator</span> <span style="color: #b22222;">""</span> _x<span style="color: #707183;">(</span><span style="color: #228b22;">char</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+11!
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8e041a1">
+<h2 id="org8e041a1">But then I realized</h2>
+<p>
+The real answer:
+</p>
+
+<p class="fragment (appear)">
+&aleph;<sub>0</sub>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8c9176f">
+<h2 id="org8c9176f">Unlimited keywords</h2>
+<div class="org-src-container">
+
+<pre  class="src src-c++"><span style="color: #a020f0;">auto</span> <span style="color: #a0522d;">x</span> = <span style="color: #a020f0;">sizeof</span> <span style="color: #a020f0;">sizeof</span> <span style="color: #a020f0;">sizeof</span> <span style="color: #a020f0;">sizeof</span> <span style="color: #a020f0;">sizeof</span> <span style="color: #bebebe;">/*</span>
+<span style="color: #bebebe;">   ... sizeof sizeof sizeof ...</span>
+<span style="color: #bebebe;">   */</span> <span style="color: #008b8b;">0</span>;
+</pre>
+</div>
+
+<p>
+Technicalities count, right?
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+width: 1600,
+height: 900,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
